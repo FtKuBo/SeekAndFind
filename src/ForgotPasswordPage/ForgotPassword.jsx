@@ -41,7 +41,7 @@ function ForgotPassword() {
             <button className="button-send" onClick={handleResetButton}>
                 RESET
             </button>
-            <div className="login-footer">© 2024 Sporting Inc. Tous droits réservés.</div>
+            <div className="login-footer">© 2025 SeekAndFind Inc. Tous droits réservés.</div>
         </div>
     );
 }

@@ -45,7 +45,7 @@ function Login() {
             <div className="login-footer">
                 Forgot password? <a href="/forgot-password" style={{ color: "white" }}>Click HERE</a>.
                 <br />
-                © 2024 Sporting Inc. Tous droits réservés.
+                © 2025 SeekAndFind Inc. Tous droits réservés.
             </div>
         </div>
     );
