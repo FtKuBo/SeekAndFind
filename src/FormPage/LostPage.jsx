@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./FormPage.css";
 import Logo from "../assets/Logo.png";
+import { useNavigate } from "react-router-dom";
 
 function LostPage() {
     const [objectType, setObjectType] = useState("");
@@ -9,6 +10,7 @@ function LostPage() {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
+    const navigate = useNavigate();
 
     const electronicDevices = ["Laptop", "Phone", "Tablet", "Smartwatch", "Headphones", "Camera"];
     const brands = {
@@ -38,6 +40,7 @@ function LostPage() {
     };
 
     const handleSubmit = () => {
+        navigate("/"); 
         alert("Lost object form submitted!");
         console.log({
             objectType,
@@ -47,7 +50,7 @@ function LostPage() {
             description,
             imageName: image ? image.name : "No image selected",
         });
-        
+
     };
 
     return (

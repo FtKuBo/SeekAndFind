@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../assets/Logo.png";
+import { useNavigate } from "react-router-dom";
 import "./FormPage.css";
 
 function FoundPage() {
@@ -9,6 +10,8 @@ function FoundPage() {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
+    const navigate = useNavigate();
+    
 
     const electronicDevices = ["Laptop", "Phone", "Tablet", "Smartwatch", "Headphones", "Camera"];
     const brands = {
@@ -38,6 +41,7 @@ function FoundPage() {
     };
 
     const handleSubmit = () => {
+        navigate("/"); 
         alert("Form submitted!");
         console.log({
             objectType,
