@@ -105,3 +105,34 @@ body {
     margin-top: 10px;
     text-align: left;
 }
+
+.custom-swal-popup {
+    background-color: #284096;
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.custom-swal-popup h2 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.custom-swal-popup .swal2-confirm {
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-swal-popup .swal2-confirm:hover {
+    background-color: #1a1a1a;
+    transform: scale(1.05);
+}

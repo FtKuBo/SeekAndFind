@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../assets/Logo.png";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import "./FormPage.css";
 
 function FoundPage() {
@@ -41,15 +42,23 @@ function FoundPage() {
     };
 
     const handleSubmit = () => {
-        navigate("/"); 
-        alert("Form submitted!");
-        console.log({
-            objectType,
-            brand,
-            location,
-            date,
-            description,
-            imageName: image ? image.name : "No image selected",
+        Swal.fire({
+            title: "Form Submitted!",
+            html: `
+                <p><strong>Object Type:</strong> ${objectType || "Not specified"}</p>
+                <p><strong>Brand:</strong> ${brand || "Not specified"}</p>
+                <p><strong>Location:</strong> ${location || "Not specified"}</p>
+                <p><strong>Date:</strong> ${date || "Not specified"}</p>
+                <p><strong>Image:</strong> ${image ? image.name : "No image selected"}</p>
+                <p><strong>Description:</strong> ${description || "Not provided"}</p>
+            `,
+            icon: "success",
+            confirmButtonText: "Go Home",
+            customClass: {
+                popup: "custom-swal-popup", 
+            },
+        }).then(() => {
+            navigate("/"); 
         });
     };
 
