@@ -8,16 +8,19 @@ function Register() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState(""); // Ajout du numéro de téléphone
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleRegister = () => {
-        if (!email || !username || !password || !confirmPassword) {
-            setError("All fields are required.");
+        if (!email || !username || !password || !confirmPassword || !phoneNumber) {
+            setError("All fields are required."); 
         } else if (password !== confirmPassword) {
             setError("Passwords do not match.");
+        } else if (!/^\+?\d{10,15}$/.test(phoneNumber)) {
+            setError("Invalid phone number format.");
         } else {
-            navigate("/"); 
+            navigate("/");
             setError("");
             alert("Registration successful!");
         }
@@ -61,6 +64,12 @@ function Register() {
                 placeholder="Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <input
+                type="text"
+                placeholder="Phone Number (e.g., +1234567890)"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)} 
             />
             <button onClick={handleRegister} className="button-register">
                 REGISTER
