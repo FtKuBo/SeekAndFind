@@ -1,16 +1,15 @@
 
 
-Run the web app
-
-cd webApp
-cd server 
+#### Run the web app
+``` bach
+cd webApp/server
 ./gradlew bootJar
 cd ..
 docker compose up
+```
 
-
-Run the matchingSystem
-
-cd matchingSystem
-cd matchingServer
+#### Run the matchingSystem server
+```bach
+cd matchingSystem/matchingServer
 ./gradlew bootRun
+```
