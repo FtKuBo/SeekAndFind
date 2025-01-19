@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importer useNavigate
 import Logo from "../assets/Logo.png";
 import "./FormPage.css";
 
@@ -10,7 +9,26 @@ function FoundPage() {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
-    const navigate = useNavigate(); // Initialiser useNavigate
+
+    const electronicDevices = ["Laptop", "Phone", "Tablet", "Smartwatch", "Headphones", "Camera"];
+    const brands = {
+        Laptop: ["Apple", "Dell", "HP", "Lenovo", "Asus", "Microsoft"],
+        Phone: ["Apple", "Samsung", "Google", "OnePlus", "Huawei", "Xiaomi"],
+        Tablet: ["Apple", "Samsung", "Microsoft", "Lenovo", "Huawei"],
+        Smartwatch: ["Apple", "Samsung", "Fitbit", "Garmin", "Huawei"],
+        Headphones: ["Sony", "Bose", "Beats", "JBL", "Sennheiser"],
+        Camera: ["Canon", "Nikon", "Sony", "Panasonic", "Fujifilm"],
+    };
+    const uOttawaLocations = [
+        "Morisset Library",
+        "Tabaret Hall",
+        "SITE Building",
+        "Colonel By Hall",
+        "Hamelin Hall",
+        "Desmarais Building",
+        "Fauteux Hall",
+        "STEM Complex",
+    ];
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -20,7 +38,6 @@ function FoundPage() {
     };
 
     const handleSubmit = () => {
-        navigate("/")
         alert("Form submitted!");
         console.log({
             objectType,
@@ -46,7 +63,7 @@ function FoundPage() {
                 onChange={(e) => setObjectType(e.target.value)}
             >
                 <option value="">Select Object Type</option>
-                {["Laptop", "Phone", "Tablet", "Smartwatch", "Headphones", "Camera"].map((device) => (
+                {electronicDevices.map((device) => (
                     <option key={device} value={device}>
                         {device}
                     </option>
@@ -61,7 +78,7 @@ function FoundPage() {
                     onChange={(e) => setBrand(e.target.value)}
                 >
                     <option value="">Select Brand</option>
-                    {["Apple", "Dell", "HP", "Lenovo", "Asus", "Microsoft"].map((brandOption) => (
+                    {brands[objectType].map((brandOption) => (
                         <option key={brandOption} value={brandOption}>
                             {brandOption}
                         </option>
@@ -76,7 +93,7 @@ function FoundPage() {
                 onChange={(e) => setLocation(e.target.value)}
             >
                 <option value="">Select Location</option>
-                {["Morisset Library", "Tabaret Hall", "SITE Building"].map((loc) => (
+                {uOttawaLocations.map((loc) => (
                     <option key={loc} value={loc}>
                         {loc}
                     </option>
@@ -109,7 +126,7 @@ function FoundPage() {
             {image && <p className="image-info">Image Selected: {image.name}</p>}
             
             {/* Submit Button */}
-            <button className="submit-button" onClick={handleSubmit} >
+            <button className="submit-button" onClick={handleSubmit}>
                 Submit
             </button>
         </div>
