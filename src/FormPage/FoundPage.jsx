@@ -42,23 +42,36 @@ function FoundPage() {
     };
 
     const handleSubmit = () => {
+        if (!objectType || !brand || !location || !date || !description || !image) {
+            Swal.fire({
+                title: "Submission Failed",
+                text: "Please fill in all fields before submitting.",
+                icon: "error",
+                confirmButtonText: "OK",
+                customClass: {
+                    popup: "custom-swal-popup",
+                },
+            });
+            return;
+        }
+
         Swal.fire({
             title: "Form Submitted!",
             html: `
-                <p><strong>Object Type:</strong> ${objectType || "Not specified"}</p>
-                <p><strong>Brand:</strong> ${brand || "Not specified"}</p>
-                <p><strong>Location:</strong> ${location || "Not specified"}</p>
-                <p><strong>Date:</strong> ${date || "Not specified"}</p>
-                <p><strong>Image:</strong> ${image ? image.name : "No image selected"}</p>
-                <p><strong>Description:</strong> ${description || "Not provided"}</p>
+                <p><strong>Object Type:</strong> ${objectType}</p>
+                <p><strong>Brand:</strong> ${brand}</p>
+                <p><strong>Location:</strong> ${location}</p>
+                <p><strong>Date:</strong> ${date}</p>
+                <p><strong>Image:</strong> ${image.name}</p>
+                <p><strong>Description:</strong> ${description}</p>
             `,
             icon: "success",
             confirmButtonText: "Go Home",
             customClass: {
-                popup: "custom-swal-popup", 
+                popup: "custom-swal-popup",
             },
         }).then(() => {
-            navigate("/"); 
+            navigate("/");
         });
     };
 
