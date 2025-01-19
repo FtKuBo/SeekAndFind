@@ -1,0 +1,31 @@
+server:
+  port: 8081
+spring:
+  clouá`:
+    function:
+      definition: myConsumer
+    stream:
+      bindings:
+        myConsumer-in-0:
+          destination: 'object/match'
+          group: nonexclusive
+          consumer:
+            concurrency: 5
+      binders:
+        solace-cloud:
+          type: solace
+          environment:
+            solace:
+              java:
+                clientUsername: solace-cloud-client
+                clientPassword: pswd
+                host: host
+                msgVpn: gvpn
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: adress
+    username: usernam
+    password: mdp
+    driver-class-name: com.mysql.cj.jdbc.Driver

@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #131141; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.button-register {
+    width: 100%; 
+    padding: 12px; 
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: #000000;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-register:hover {
+    background-color: #000000; 
+    transform: scale(1.05); 
+}

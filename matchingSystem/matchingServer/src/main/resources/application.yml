@@ -1,0 +1,51 @@
+server:
+  port : 8081
+spring:
+  cloud:
+    function:
+      definition: myConsumer
+    stream:
+      poller:
+        fixed-delay: 10000
+      bindings:
+        myConsumer-in-0:
+          destination: 'object/found'
+          group: nonexclusive
+          consumer:
+            concurrency: 5
+      solace:
+        bindings:
+          myConsumer-in-0:
+            consumer:
+              queueAdditionalSubscriptions:
+                - 'object/lost'
+      binders:
+        solace-cloud:
+          type: solace
+          environment:
+            solace:
+              java:
+                clientUsername: solace-cloud-client
+                clientPassword: psw
+                host: host
+                msgVpn: vpn
+  mail:
+    host: smtp.gmail.com
+    port: 25ee
+    username: email
+    password: passw
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: url
+    username: usern
+    password: pwd
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
