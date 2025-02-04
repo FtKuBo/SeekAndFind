@@ -1,7 +1,7 @@
 server:
   port: 8081
 spring:
-  clouá`:
+  cloud:
     function:
       definition: myConsumer
     stream:
@@ -22,10 +22,13 @@ spring:
                 host: host
                 msgVpn: gvpn
   jpa:
-    hibernate:
-      ddl-auto: update
+      hibernate:
+        ddl-auto: update
   datasource:
-    url: adress
-    username: usernam
-    password: mdp
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seekAndFindDb?useSSL=false #only for testing/dev purposes we disable ssl ...
+    username: seekAndFind
+    password: GJW9
+
+  sql:
+    init:
+      mode: always
