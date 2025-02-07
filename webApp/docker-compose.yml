@@ -1,6 +1,23 @@
 services:
 
- db:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    ports:
+      - 8080:8080
+    depends_on :
+      - db
+    environment: # Pass environment variables to the service
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/seekAndFindDb?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: seekAndFind
+      SPRING_DATASOURCE_PASSWORD: GJW9     
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
+      - frontend
+
+  db:
    image: mysql:latest
    environment:
      MYSQL_DATABASE: seekAndFindDb
@@ -11,9 +28,14 @@ services:
    volumes:
      - seek-and-find-db-volume:/var/lib/mysql
    networks:
-     - backend 
+     - backend
+   healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
- client:
+  client:
    build:
      context: ./client
      dockerfile: Dockerfile
@@ -24,27 +46,9 @@ services:
      - ./client:/app
      - /app/node_modules
    environment:
-     - VITE_APP_BACKEND_ADDRESS=http://localhost/8080
+     - VITE_APP_BACKEND_ADDRESS=http://server:8080
    networks:
      - frontend
-
- server:
-   build:
-    context: ./server
-    dockerfile: Dockerfile
-   container_name: server
-   ports:
-     - 8081:8081
-   depends_on :
-    - db
-   environment: # Pass environment variables to the service
-     SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/seekAndFindDb?useSSL=false
-     SPRING_DATASOURCE_USERNAME: seekAndFind
-     SPRING_DATASOURCE_PASSWORD: GJW9     
-   networks: # Networks to join (Services on the same network can communicate with each other using their name)
-     - backend
-     - frontend
-
 
 volumes:
  seek-and-find-db-volume:
