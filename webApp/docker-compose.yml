@@ -9,8 +9,7 @@ services:
       - 8080:8080
     depends_on :
       db:
-        condition: 
-          - service_healthy
+        condition: service_healthy
     environment: # Pass environment variables to the service
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/seekAndFindDb?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: seekAndFind
