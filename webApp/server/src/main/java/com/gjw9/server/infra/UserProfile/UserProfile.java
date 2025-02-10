@@ -1,4 +1,4 @@
-package com.gjw9.server.infra;
+package com.gjw9.server.infra.UserProfile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
