@@ -1,4 +1,7 @@
 package com.gjw9.server.infra;
+
+import com.gjw9.server.infra.UserProfile.UserProfile;
+
 // to implement
 public class Notification {
 

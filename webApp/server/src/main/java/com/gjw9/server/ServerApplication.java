@@ -2,6 +2,9 @@ package com.gjw9.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class ServerApplication {
@@ -10,6 +13,10 @@ public class ServerApplication {
 		SpringApplication.run(ServerApplication.class, args);
 	}
 
+	@Bean
+    PasswordEncoder getPasswordEncoder() { 
+        return new BCryptPasswordEncoder(); 
+    } 
 
 	// @Bean
 	// public Consumer<Message<String>> myConsumer(StreamBridge sb) {
