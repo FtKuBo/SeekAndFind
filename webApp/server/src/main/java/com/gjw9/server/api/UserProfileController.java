@@ -1,6 +1,6 @@
 package com.gjw9.server.api;
 
-import org.apache.tomcat.util.json.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,8 +10,8 @@ import com.gjw9.server.service.UserProfileService;
 @RestController
 @RequestMapping(path = "/userProfiles")
 public class UserProfileController {
-
-    UserProfileService userProfileService = new UserProfileService();
+    @Autowired
+    UserProfileService userProfileService;
 
 // // To change error handling
 //     @GetMapping(path = "/auth")
@@ -28,33 +28,18 @@ public class UserProfileController {
 //         }
 //     }
 
-// To change error handling
     @PostMapping(path = "/add")
-    public @ResponseBody UserProfile addNewUser(@RequestBody String userInfo ) {
+    public @ResponseBody UserProfile addNewUser(@RequestBody UserProfile newUser ) {
         try{
-            String name = extractValue(userInfo, "name");
-            String email = extractValue(userInfo, "email");
-            String password = extractValue(userInfo, "password");
-            UserProfile user = userProfileService.saveUserProfile(name, email, password);
+            UserProfile user = userProfileService.saveNewUserProfile(newUser);
 
             return user;
         }
-        catch(DataIntegrityViolationException e){
+        catch(IllegalStateException e){
             System.out.println("user email already exists");
 
             return null;
         }
-    }
-// temporary just for testing purposes
-    private static String extractValue(String jsonString, String key) {
-        // Find the start of the value (after the colon and space)
-        int startIndex = jsonString.indexOf("\"" + key + "\"") + key.length() + 3;  // +3 for the ": " and opening quote
-        
-        // Find the end of the value (the closing quote)
-        int endIndex = jsonString.indexOf("\"", startIndex);
-        
-        // Return the value between the quotes
-        return jsonString.substring(startIndex, endIndex);
     }
 
     // @PutMapping(path = "/put")
@@ -63,8 +48,8 @@ public class UserProfileController {
     //     return userRepository.findAll();
     // }
 
-    @DeleteMapping(path = "/del")
-    public void getAllUsers(@RequestParam String email) {
+    @DeleteMapping(path = "/del/{email}")
+    public @ResponseBody void getAllUsers(@PathVariable String email) {
         userProfileService.deleteUserByEmail(email);
         
     }

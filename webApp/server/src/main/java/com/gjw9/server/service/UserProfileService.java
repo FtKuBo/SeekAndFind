@@ -4,20 +4,20 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.gjw9.server.infra.UserProfile.UserProfile;
 import com.gjw9.server.infra.UserProfile.UserProfileRepository;
 
- 
+@Service
 public class UserProfileService {
  
     @Autowired
     private UserProfileRepository userProfileRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private PasswordEncoder encoder;
      
     public UserProfile getUser(String email)
             throws NoSuchElementException{
@@ -33,20 +33,33 @@ public class UserProfileService {
         userProfileRepository.deleteById(email);
     }
 
-    public UserProfile saveUserProfile(String name, String email, String password) 
-            throws DataIntegrityViolationException{
-        UserProfile newUser = new UserProfile();
-        newUser.setName(name);
-        newUser.setEmail(email);
-        newUser.setPassword(passwordEncoder.encode(password));
-        
-        userProfileRepository.save(newUser);
+    public UserProfile saveNewUserProfile(UserProfile newUser) 
+            throws IllegalStateException {
+        try{
+            getUser(newUser.getEmail());
+            throw new IllegalStateException();
+        }
+        catch(NoSuchElementException e){
+            newUser.setPassword( encoder.encode(newUser.getPassword()) );
 
-        return newUser;
+            userProfileRepository.saveAndFlush(newUser);
+    
+            return newUser;
+        }
     }
 
+    public UserProfile saveUserProfile(UserProfile updatedUser) 
+            throws IllegalStateException {
+
+                updatedUser.setPassword( encoder.encode(updatedUser.getPassword()) );
+
+            userProfileRepository.saveAndFlush(updatedUser);
+
+            return updatedUser;
+        }
+
     public boolean authenticateUser(String password, UserProfile user) {
-        return passwordEncoder.matches(password, user.getPassword());
+        return encoder.matches(password, user.getPassword());
     }
 }
  
