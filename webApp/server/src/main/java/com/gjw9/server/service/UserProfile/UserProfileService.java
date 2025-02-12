@@ -1,4 +1,4 @@
-package com.gjw9.server.service;
+package com.gjw9.server.service.UserProfile;
  
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -48,10 +48,9 @@ public class UserProfileService {
         }
     }
 
-    public UserProfile saveUserProfile(UserProfile updatedUser) 
-            throws IllegalStateException {
+    public UserProfile saveUserProfile(UserProfile updatedUser) {
 
-                updatedUser.setPassword( encoder.encode(updatedUser.getPassword()) );
+            updatedUser.setPassword( encoder.encode(updatedUser.getPassword()) );
 
             userProfileRepository.saveAndFlush(updatedUser);
 
