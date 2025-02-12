@@ -1,4 +1,4 @@
-package com.gjw9.server.infra;
+package com.gjw9.server.infra.UserProfile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,17 +13,6 @@ public class UserProfile {
     private String email;
     private String name;
     private String password;
-
-    public UserProfile(String name, String email, String password){
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
-    public UserProfile(String name, String password){
-        this.name = name;
-        this.password = password;
-    }
 
     public String getName() {
         return name;
