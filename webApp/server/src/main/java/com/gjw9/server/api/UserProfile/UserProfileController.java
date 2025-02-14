@@ -1,4 +1,4 @@
-package com.gjw9.server.api;
+package com.gjw9.server.api.UserProfile;
 
 import java.util.NoSuchElementException;
 
