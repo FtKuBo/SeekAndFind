@@ -11,6 +11,7 @@ import com.gjw9.server.service.UserProfile.UserProfileService;
 @RestController
 @RequestMapping(path = "/userProfiles")
 public class UserProfileController {
+
     @Autowired
     UserProfileService userProfileService;
 
@@ -50,7 +51,7 @@ public class UserProfileController {
     }
 
     @DeleteMapping(path = "/del/{email}")
-    public @ResponseBody void getAllUsers(@PathVariable String email) {
+    public @ResponseBody void deleteUserByEmail(@RequestParam String email) {
         userProfileService.deleteUserByEmail(email);
         
     }
