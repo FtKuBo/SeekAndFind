@@ -49,7 +49,6 @@ public class UserProfileService {
     }
 
     public UserProfile saveUserProfile(UserProfile updatedUser) {
-
             updatedUser.setPassword( encoder.encode(updatedUser.getPassword()) );
 
             userProfileRepository.saveAndFlush(updatedUser);
