@@ -15,7 +15,7 @@ public class BrokerController {
 
     @PostMapping(path = "/sendMessage")
     public @ResponseBody void sendMessage(@RequestParam String topic, @RequestBody Request message) {
-        brokerService.sendMessage("object/lost", message);
+        brokerService.sendMessage(topic, message);
     }
 
 }

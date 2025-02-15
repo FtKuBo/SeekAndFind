@@ -5,6 +5,8 @@ import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
 import com.gjw9.server.infra.Request.Request;
+import com.gjw9.server.service.Email.EmailService;
+
 
 @Service
 public class BrokerService {
@@ -12,13 +14,17 @@ public class BrokerService {
     @Autowired
     StreamBridge streamBridge;
 
+    @Autowired 
+    EmailService emailService;
+
     public Request sendMessage(String topic, Request message){
-        // format Request to proper message
-        streamBridge.send(topic, "request received");
+        streamBridge.send(topic, message);
         return message;
     }
-
+// TODO : extract the user emails and content
     public void handleMessage(String message){
-        // do something with message
+        if (message != null){
+            emailService.sendEmail(message);
+        }
     }
 }
