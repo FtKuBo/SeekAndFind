@@ -1,4 +1,4 @@
-package com.gjw9.server.api.Broker;
+package com.gjw9.server.config;
 
 import java.util.function.Consumer;
 

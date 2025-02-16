@@ -21,7 +21,7 @@ public class BrokerService {
         streamBridge.send(topic, message);
         return message;
     }
-// TODO : extract the user emails and content
+
     public void handleMessage(String message){
         if (message != null){
             emailService.sendEmail(message);

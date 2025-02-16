@@ -22,10 +22,16 @@ public class BrokerConfig {
     BrokerService brokerService;
 
 	@Bean
-	public Consumer<Message<String>> matchingSysConsumer() {
+	public Consumer<Message<String>> lostObject() {
 		return v -> {
-            System.out.println("message received " + v.getPayload());
-            brokerService.handleMessage(v.getPayload());
+            brokerService.handleLostObject(v.getPayload());
+		};
+	}
+
+    @Bean
+	public Consumer<Message<String>> foundObject() {
+		return v -> {
+            brokerService.handleFoundObject(v.getPayload());
 		};
 	}
 

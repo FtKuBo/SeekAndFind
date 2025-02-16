@@ -1,19 +1,19 @@
-package com.gjw9.server.infra.Request;
+package com.gjw9.matchingServer.infra.MatchingSys.FoundObject;
 
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gjw9.matchingServer.infra.MatchingSys.MatchObject;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Requests")
-public class Request {
-
+@Table(name = "FoundObjects")
+public class FoundObject extends MatchObject{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -72,5 +72,4 @@ public class Request {
     public void setObjectDate(LocalDate objectDate) {
         this.objectDate = objectDate;
     }
-
 }
