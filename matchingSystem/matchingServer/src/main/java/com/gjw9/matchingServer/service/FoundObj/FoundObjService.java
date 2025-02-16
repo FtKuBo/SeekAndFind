@@ -1,0 +1,34 @@
+package com.gjw9.matchingServer.service.FoundObj;
+
+import java.time.LocalDate;
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gjw9.matchingServer.infra.MatchingSys.FoundObject.FoundObjRepository;
+import com.gjw9.matchingServer.infra.MatchingSys.FoundObject.FoundObject;
+
+@Service
+public class FoundObjService {
+
+
+    @Autowired
+    FoundObjRepository foundObjRepository;
+
+    public Collection<FoundObject> getFoundObjects(String email, String objType, String objLocation, LocalDate objDate) {
+        Collection<FoundObject> foundObjects = foundObjRepository.getAllMatchingObjects(email, objType, objLocation, objDate);
+
+        return foundObjects;
+    }
+
+    public void deleteFoundObject(FoundObject foundObject) {
+        foundObjRepository.deleteById(foundObject.getId());
+    }
+
+    public FoundObject saveFoundObject(FoundObject foundObject) {
+        foundObjRepository.saveAndFlush(foundObject);
+    
+        return foundObject;
+    }
+}

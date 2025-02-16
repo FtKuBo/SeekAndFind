@@ -1,4 +1,4 @@
-package com.gjw9.server.api;
+package com.gjw9.server.api.Request;
 
 import java.util.ArrayList;
 import java.util.List;
