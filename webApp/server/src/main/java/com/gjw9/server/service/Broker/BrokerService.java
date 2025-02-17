@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import com.gjw9.server.infra.Request.Request;
 import com.gjw9.server.service.Email.EmailService;
 
+//TODO FIND A WAY TO DELETE REQUESTS AND SHOW IN FRONT THAT THEIR WERE DELETED ONLY IF IT IS THE CASE
+//Change email auth
+//finish implementing email system
+//work on frontend
 
 @Service
 public class BrokerService {
@@ -24,7 +28,8 @@ public class BrokerService {
 
     public void handleMessage(String message){
         if (message != null){
-            emailService.sendEmail(message);
+            System.out.println("message received" + message);
+            // emailService.sendEmail(message);
         }
     }
 }

@@ -22,7 +22,6 @@ public class BrokerConfig {
 	@Bean
 	public Consumer<Message<String>> weAppConsumer() {
 		return v -> {
-            System.out.println("message received " + v.getPayload());
             brokerService.handleMessage(v.getPayload());
 		};
 	}
