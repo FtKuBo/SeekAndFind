@@ -23,7 +23,7 @@ public class FoundObjService {
     }
 
     public void deleteFoundObject(FoundObject foundObject) {
-        foundObjRepository.deleteById(foundObject.getId());
+        foundObjRepository.deleteClones(foundObject.getUserEmail(), foundObject.getObjectType(), foundObject.getObjectDescription(), foundObject.getObjectLocation(), foundObject.getObjectDate());
     }
 
     public FoundObject saveFoundObject(FoundObject foundObject) {

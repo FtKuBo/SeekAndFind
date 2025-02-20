@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.gjw9.matchingServer.infra.MatchingSys.FoundObject.FoundObject;
 import com.gjw9.matchingServer.infra.MatchingSys.LostObject.LostObject;
+import com.gjw9.matchingServer.service.FoundObj.FoundObjService;
+import com.gjw9.matchingServer.service.LostObj.LostObjService;
 import com.gjw9.matchingServer.service.MatchingSys.MatchingSysService;
 
 
@@ -20,6 +22,28 @@ public class BrokerService {
 
     @Autowired
     MatchingSysService matchingSysService;
+
+    @Autowired 
+    FoundObjService foundObjService;
+
+    @Autowired
+    LostObjService lostObjService;
+
+    public void handleDelete(String message){
+        JSONObject jsonObj = new JSONObject(message);
+        String objStatus = jsonObj.getString("objectStatus");
+
+        if (objStatus == "found"){
+            FoundObject newObj = JsonToFoundObj(message);
+            foundObjService.deleteFoundObject(newObj);
+
+        }
+        if (objStatus == "lost"){
+            LostObject newObj = JsonToLostObj(message);
+            System.out.println("deleting obj" + message);
+            lostObjService.deleteLostObject(newObj);
+        }
+    }
 
     public void handleFoundObject(String message){
         FoundObject newObj = JsonToFoundObj(message);

@@ -20,8 +20,8 @@ public class LostObjService {
         return lostObjects;
     }
 
-    public void deleteFoundObject(LostObject lostObject) {
-        lostObjRepository.deleteById(lostObject.getId());
+    public void deleteLostObject(LostObject lostObject) {
+        lostObjRepository.deleteClones(lostObject.getUserEmail(), lostObject.getObjectType(), lostObject.getObjectDescription(), lostObject.getObjectLocation(), lostObject.getObjectDate());
     }
 
     public LostObject saveLostObject(LostObject lostObject) {

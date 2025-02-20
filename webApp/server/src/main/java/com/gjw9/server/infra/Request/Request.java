@@ -26,6 +26,8 @@ public class Request {
 
     private String objectLocation;
 
+    private String objectStatus;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate objectDate;
 
@@ -73,4 +75,12 @@ public class Request {
         this.objectDate = objectDate;
     }
 
+    public String getObjectStatus() {
+        return objectStatus;
+    }
+
+    public void setObjectStatus(String objectStatus) {
+        this.objectStatus = objectStatus;
+    }
+    
 }
