@@ -3,7 +3,6 @@ package com.gjw9.matchingServer.infra.MatchingSys.LostObject;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.gjw9.matchingServer.infra.MatchingSys.MatchObject;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "LostObjects")
-public class LostObject extends MatchObject{
+public class LostObject{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gjw9.server.infra.Request.Request;
+import com.gjw9.server.service.Email.EmailService;
 import com.gjw9.server.service.Request.RequestService;
 
 @RestController
@@ -23,12 +24,20 @@ public class RequestController {
     @Autowired
     RequestService requestService;
 
+    @Autowired
+    EmailService emailService;
+
     @GetMapping(path = "/get")
     public @ResponseBody List<Request> getRequestsByEmail(@RequestParam String email) {
         List<Request> requests = new ArrayList<>(requestService.getRequests(email));
        
         return requests;
     }
+    //test
+    @PostMapping(path = "/sendemail")
+    public @ResponseBody void sendemail(@RequestParam String email, @RequestBody String content ) {
+        emailService.sendEmail(email, "test", content);
+    }  
 
     @PostMapping(path = "/add")
     public @ResponseBody Request addNewRequest(@RequestBody Request newRequest ) {

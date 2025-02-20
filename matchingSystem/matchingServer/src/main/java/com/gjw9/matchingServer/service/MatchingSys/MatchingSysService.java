@@ -2,11 +2,11 @@ package com.gjw9.matchingServer.service.MatchingSys;
 
 import java.util.Collection;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
-import com.gjw9.matchingServer.infra.MatchingSys.MatchObject;
 import com.gjw9.matchingServer.infra.MatchingSys.FoundObject.FoundObject;
 import com.gjw9.matchingServer.infra.MatchingSys.LostObject.LostObject;
 import com.gjw9.matchingServer.service.FoundObj.FoundObjService;
@@ -28,8 +28,17 @@ public class MatchingSysService {
         Collection<FoundObject> matches = seekMatchForLostObj(obj);
 
         if (matches !=  null){
-            for (FoundObject match : matches)
-                sendMatch(match);
+            for (FoundObject match : matches){
+                JSONObject jsonObj = new JSONObject();
+                jsonObj.put("foundUserEmail", match.getUserEmail());
+                jsonObj.put("lostUserEmail", obj.getUserEmail());
+                jsonObj.put("objectDate", match.getObjectDate());
+                jsonObj.put("foundObjectDescription", match.getObjectDescription());
+                jsonObj.put("lostObjectDescription", obj.getObjectDescription());
+                jsonObj.put("objectLocation", match.getObjectLocation());
+                jsonObj.put("objectType", match.getObjectType());
+                sendMatch(jsonObj);
+            }
         }
         else{
             lostObjService.saveLostObject(obj);
@@ -40,8 +49,17 @@ public class MatchingSysService {
         Collection<LostObject> matches = seekMatchForFoundObj(obj);
 
         if (matches !=  null){
-            for (LostObject match : matches)
-                sendMatch(match);
+            for (LostObject match : matches){
+                JSONObject jsonObj = new JSONObject();
+                jsonObj.put("lostUserEmail", match.getUserEmail());
+                jsonObj.put("foundUserEmail", obj.getUserEmail());
+                jsonObj.put("objectDate", match.getObjectDate());
+                jsonObj.put("foundObjectDescription", obj.getObjectDescription());
+                jsonObj.put("lostObjectDescription", match.getObjectDescription());
+                jsonObj.put("objectLocation", match.getObjectLocation());
+                jsonObj.put("objectType", match.getObjectType());
+                sendMatch(jsonObj);
+            }
         }
         else{
             foundObjService.saveFoundObject(obj);
@@ -66,8 +84,8 @@ public class MatchingSysService {
         return null;
     }
 
-    private MatchObject sendMatch(MatchObject match){
-        streamBridge.send("object/match", match);
+    private JSONObject sendMatch(JSONObject match){
+        streamBridge.send("object/match", match.toString());
         return match;
     }
 

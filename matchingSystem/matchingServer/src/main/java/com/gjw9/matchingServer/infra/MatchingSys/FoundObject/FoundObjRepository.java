@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FoundObjRepository extends JpaRepository<FoundObject, Long> {
 
-    @Query("select obj from FoundObject obj where obj.userEmail = ?1 and obj.objectType = ?2 and obj.objectLocation = ?3 and obj.objectDate <= ?4 ")
+    @Query("select obj from FoundObject obj where obj.userEmail != ?1 and obj.objectType = ?2 and obj.objectLocation = ?3 and obj.objectDate <= ?4")
     Collection<FoundObject> getAllMatchingObjects(String userEmail, String objectType, String objectLocation, LocalDate objectDate);
 }

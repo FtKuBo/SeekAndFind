@@ -16,7 +16,7 @@ public class UserProfileController {
     UserProfileService userProfileService;
 
     @GetMapping(path = "/auth")
-    public @ResponseBody Boolean getUserProfile(@RequestParam String email, String password) {
+    public @ResponseBody Boolean getUserProfile(@RequestParam String email, @RequestParam String password) {
 
         try{
             UserProfile userProfile =  userProfileService.getUser(email);
