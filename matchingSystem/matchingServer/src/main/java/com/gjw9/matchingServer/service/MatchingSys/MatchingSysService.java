@@ -33,7 +33,8 @@ public class MatchingSysService {
                 jsonObj.put("foundUserEmail", match.getUserEmail());
                 jsonObj.put("lostUserEmail", obj.getUserEmail());
                 jsonObj.put("objectDate", match.getObjectDate());
-                jsonObj.put("objectDescription", match.getObjectDescription());
+                jsonObj.put("foundObjectDescription", match.getObjectDescription());
+                jsonObj.put("lostObjectDescription", obj.getObjectDescription());
                 jsonObj.put("objectLocation", match.getObjectLocation());
                 jsonObj.put("objectType", match.getObjectType());
                 sendMatch(jsonObj);
@@ -53,7 +54,8 @@ public class MatchingSysService {
                 jsonObj.put("lostUserEmail", match.getUserEmail());
                 jsonObj.put("foundUserEmail", obj.getUserEmail());
                 jsonObj.put("objectDate", match.getObjectDate());
-                jsonObj.put("objectDescription", match.getObjectDescription());
+                jsonObj.put("foundObjectDescription", obj.getObjectDescription());
+                jsonObj.put("lostObjectDescription", match.getObjectDescription());
                 jsonObj.put("objectLocation", match.getObjectLocation());
                 jsonObj.put("objectType", match.getObjectType());
                 sendMatch(jsonObj);
@@ -81,11 +83,9 @@ public class MatchingSysService {
 
         return null;
     }
-// solve problem emtpy obj received
-// also received in double
+
     private JSONObject sendMatch(JSONObject match){
-        System.out.println(match);
-        streamBridge.send("object/match", match);
+        streamBridge.send("object/match", match.toString());
         return match;
     }
 

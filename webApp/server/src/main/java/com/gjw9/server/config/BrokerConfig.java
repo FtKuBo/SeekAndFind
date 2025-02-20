@@ -20,7 +20,7 @@ public class BrokerConfig {
     BrokerService brokerService;
 
 	@Bean
-	public Consumer<Message<String>> weAppConsumer() {
+	public Consumer<Message<String>> webAppConsumer() {
 		return v -> {
             brokerService.handleMessage(v.getPayload());
 		};
