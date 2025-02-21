@@ -22,17 +22,42 @@ public class BrokerConfig {
     BrokerService brokerService;
 
 	@Bean
+	public Consumer<Message<String>> deleteObject() {
+		try{
+			return v -> {
+				brokerService.handleDelete(v.getPayload());
+			};
+		}
+		catch(Exception e){
+			System.out.println("error in deleteObject: " + e);
+			return null;
+		}
+	}
+
+	@Bean
 	public Consumer<Message<String>> lostObject() {
-		return v -> {
-            brokerService.handleLostObject(v.getPayload());
-		};
+		try{
+			return v -> {
+				brokerService.handleLostObject(v.getPayload());
+			};
+		}
+		catch(Exception e){
+			System.out.println("error in lostObject: " + e);
+			return null;
+		}
 	}
 
     @Bean
 	public Consumer<Message<String>> foundObject() {
-		return v -> {
-            brokerService.handleFoundObject(v.getPayload());
-		};
+		try{
+			return v -> {
+				brokerService.handleFoundObject(v.getPayload());
+			};
+		}
+		catch(Exception e){
+			System.out.println("error in foundObject: " + e);
+			return null;
+		}
 	}
 
 }

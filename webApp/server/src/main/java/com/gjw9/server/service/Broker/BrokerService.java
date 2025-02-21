@@ -5,6 +5,7 @@ import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
 import org.json.JSONObject;
+
 import com.gjw9.server.infra.Request.Request;
 import com.gjw9.server.service.Email.EmailService;
 
@@ -22,9 +23,8 @@ public class BrokerService {
 
     static String EMAILSBJ = "";
 
-    public Request sendMessage(String topic, Request message){
+    public void sendMessage(String topic, Request message){
         streamBridge.send(topic, message);
-        return message;
     }
 
     public void handleMessage(String message){

@@ -33,11 +33,6 @@ public class RequestController {
        
         return requests;
     }
-    //test
-    @PostMapping(path = "/sendemail")
-    public @ResponseBody void sendemail(@RequestParam String email, @RequestBody String content ) {
-        emailService.sendEmail(email, "test", content);
-    }  
 
     @PostMapping(path = "/add")
     public @ResponseBody Request addNewRequest(@RequestBody Request newRequest ) {

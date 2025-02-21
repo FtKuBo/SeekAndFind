@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.gjw9.matchingServer.infra.MatchingSys.LostObject.LostObjRepository;
 import com.gjw9.matchingServer.infra.MatchingSys.LostObject.LostObject;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class LostObjService {
     @Autowired
@@ -20,10 +22,12 @@ public class LostObjService {
         return lostObjects;
     }
 
-    public void deleteFoundObject(LostObject lostObject) {
-        lostObjRepository.deleteById(lostObject.getId());
+    @Transactional
+    public void deleteLostObject(LostObject lostObject) {
+        lostObjRepository.deleteClones(lostObject.getUserEmail(), lostObject.getObjectType(), lostObject.getObjectDescription(), lostObject.getObjectLocation(), lostObject.getObjectDate());
     }
 
+    @Transactional
     public LostObject saveLostObject(LostObject lostObject) {
         lostObjRepository.saveAndFlush(lostObject);
     

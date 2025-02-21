@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.gjw9.matchingServer.infra.MatchingSys.FoundObject.FoundObjRepository;
 import com.gjw9.matchingServer.infra.MatchingSys.FoundObject.FoundObject;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class FoundObjService {
 
@@ -22,10 +24,12 @@ public class FoundObjService {
         return foundObjects;
     }
 
+    @Transactional
     public void deleteFoundObject(FoundObject foundObject) {
-        foundObjRepository.deleteById(foundObject.getId());
+        foundObjRepository.deleteClones(foundObject.getUserEmail(), foundObject.getObjectType(), foundObject.getObjectDescription(), foundObject.getObjectLocation(), foundObject.getObjectDate());
     }
 
+    @Transactional
     public FoundObject saveFoundObject(FoundObject foundObject) {
         foundObjRepository.saveAndFlush(foundObject);
     
