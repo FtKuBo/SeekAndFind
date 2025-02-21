@@ -3,14 +3,12 @@ SeekAndFind is a Spring Boot and React-based web application designed for uOttaw
 
 #### Run the web app
 ``` bach
-cd webApp/server
-./gradlew bootJar
-cd ..
+cd webApp
 docker compose up
 ```
 
 #### Run the matchingSystem server
 ```bach
-cd matchingSystem/matchingServer
-./gradlew bootRun
+cd matchingSystem
+docker compose up
 ```
