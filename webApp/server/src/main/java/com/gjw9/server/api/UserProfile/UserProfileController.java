@@ -25,6 +25,7 @@ public class UserProfileController {
         }
         catch(NoSuchElementException e){
             System.out.println("User doesn't exist");
+            
             return null;
         }
     }
@@ -50,7 +51,7 @@ public class UserProfileController {
         return user;
     }
 
-    @DeleteMapping(path = "/del/{email}")
+    @DeleteMapping(path = "/del")
     public @ResponseBody void deleteUserByEmail(@RequestParam String email) {
         userProfileService.deleteUserByEmail(email);
         

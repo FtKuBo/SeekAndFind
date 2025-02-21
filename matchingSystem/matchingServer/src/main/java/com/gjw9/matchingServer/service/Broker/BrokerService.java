@@ -33,14 +33,13 @@ public class BrokerService {
         JSONObject jsonObj = new JSONObject(message);
         String objStatus = jsonObj.getString("objectStatus");
 
-        if (objStatus == "found"){
+        if (objStatus.equals("found")){
             FoundObject newObj = JsonToFoundObj(message);
             foundObjService.deleteFoundObject(newObj);
 
         }
-        if (objStatus == "lost"){
+        if (objStatus.equals("lost")){
             LostObject newObj = JsonToLostObj(message);
-            System.out.println("deleting obj" + message);
             lostObjService.deleteLostObject(newObj);
         }
     }
