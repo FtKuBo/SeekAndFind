@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #131141;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main-container {
+    background-color: #284096;
+    border-radius: 20px;
+    padding: 40px 30px 30px;
+    width: 350px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+.main-logo {
+    position: absolute;
+    top: -80px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 130px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.main-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-title {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 40px 0 20px; 
+}
+
+.button-main {
+    width: 100%; 
+    padding: 12px; 
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: #000000;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-main:hover {
+    background-color: #1a1a1a;
+    transform: scale(1.05); 
+}
+
+.user-menu-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.user-menu-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; 
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.user-menu-icon:hover img {
+    transform: scale(1.1);
+}
+
+.user-menu {
+    position: absolute;
+    top: 60px; 
+    right: 20px;
+    background-color: #284096;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+.user-menu button {
+    background: none;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.user-menu button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

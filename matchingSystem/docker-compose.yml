@@ -1,0 +1,43 @@
+services:
+
+  server:
+    build:
+      context: ./matchingServer
+      dockerfile: Dockerfile
+    container_name: matchingServer
+    ports:
+      - 8081:8081
+    depends_on :
+      db:
+        condition: service_healthy
+    environment: # Pass environment variables to the service
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/seekAndFindMatchingDb
+      SPRING_DATASOURCE_USERNAME: seekAndFindMatching
+      SPRING_DATASOURCE_PASSWORD: GJW9
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - system
+
+  db:
+   image: mysql:latest
+   environment:
+     MYSQL_DATABASE: seekAndFindMatchingDb
+     MYSQL_USER: seekAndFindMatching
+     MYSQL_PASSWORD: GJW9
+     MYSQL_ROOT_PASSWORD: GJW9
+   ports:
+     - 3307:3306
+   volumes:
+     - seek-and-find-matching-db-volume:/var/lib/mysql
+   networks:
+     - system
+   healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+ seek-and-find-matching-db-volume:
+
+networks:
+ system:

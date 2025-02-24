@@ -1,0 +1,177 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #131141; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    background-color: #284096;
+    border-radius: 20px;
+    padding: 40px 30px 30px;
+    width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+.form-title {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px; 
+}
+
+.input-field, .select-field, .textarea-field {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none; 
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white; 
+    box-sizing: border-box;
+    outline: none; 
+}
+
+.select-field {
+    appearance: none;
+    -webkit-appearance: none; 
+}
+
+.textarea-field {
+    height: 80px; 
+    resize: none; 
+}
+
+.submit-button {
+    width: 100%; 
+    padding: 12px; 
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: #000000; 
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+    background-color: #1a1a1a;
+    transform: scale(1.05); 
+}
+
+.form-logo {
+    position: absolute;
+    top: -80px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 130px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.form-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.input-field[type="file"] {
+    padding: 5px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 8px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.image-info {
+    font-size: 0.9rem;
+    color: white;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.custom-swal-popup {
+    background-color: #284096;
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.custom-swal-popup h2 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.custom-swal-popup .swal2-confirm {
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-swal-popup .swal2-confirm:hover {
+    background-color: #1a1a1a;
+    transform: scale(1.05);
+}
+
+.custom-title {
+    color: black !important;
+  }
+
+
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    backdrop-filter: blur(5px); /* Blur effect */
+    z-index: 50; /* Ensure it's on top */
+  }
+  
+  /* Spinner animation */
+  .spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid #fff; /* White border */
+    border-top: 6px solid transparent; /* Transparent top to create spinner effect */
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite; /* Spin animation */
+  }
+  
+  /* Keyframes for spinner */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
