@@ -23,7 +23,7 @@ docker compose up
 ```
 
 ### 🔍 Running the Matching System Server
-```bach
+```bash
 cd matchingSystem
 docker compose up
 ```
