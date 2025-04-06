@@ -2,7 +2,7 @@
 
 SeekAndFind is a **Spring Boot and React-based web application** developed for **uOttawa students** to track lost and found electronic devices. It was built as part of the **Solace Challenge** at **uOttaHack 7** by team **GJW9**.  
 
-🎥 **Demo Video:** [Watch on YouTube](https://www.youtube.com/watch?v=FT4U7X0Klec)  
+## 🎥 **Demo Video:** [Watch on YouTube](https://www.youtube.com/watch?v=FT4U7X0Klec)  
 
 ## 🚀 How It Works  
 
